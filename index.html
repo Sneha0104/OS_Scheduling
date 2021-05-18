@@ -1,42 +1,103 @@
-<html id="cpu">
-	<head>
-    <link rel="stylesheet" href="app.css" />
-    <link rel="stylesheet" href="indexcpu.css"/>
-    <link rel="icon" href="C:\Users\Ramyaa\Documents\projects\cpu.png" type="image/icon type">
-        <title>CPU Scheduling Algorithms - Project</title>
-		
-		<script src="js/jquery-3.1.0.min.js"></script>
-        <script>
-            $(document).ready(function () {
-               $('#methods').change(function(){ location.href = $(this).val(); });
-            })
+<html>
+
+<head>
+  <link rel="stylesheet" href="visualPages.css">
+  <title> Data Structure Visualization </title>
+  <link rel="shortcut icon" href="favicon.ico" />
+</head>
+
+<body>
+
+  <div class="container">
 
 
-       </script>
-	</head>
-	<body id="cpu">
-<div id="preloader">
-  <div id="status">&nbsp;</div>
-</div>
-<script>
-$(window).on('load', function() { 
-  $('#status').fadeOut(); 
-  $('#preloader').delay(350).fadeOut('slow'); 
-  $('body').delay(350).css({'overflow':'visible'});
-})
-</script>
-<div class="bg"></div>
-<div class="bg bg2"></div>
-<div class="bg bg3"></div>
-<center><div id="card">
-                <h1>CPU SCHEDULING ALGORITHMS</h1>
-                <h2>A MINI PROJECT</h2>
-                <br>
-                <div>
-                <a href="FirstComeFirstServe.html">
-                  <button  class="button" id="start">START</button>
-                </a>
-                </div>
-        </div></body></center>
-	</body>
+
+    <div class="header">
+      <h1>Data Structure Visualizations</h1>
+    </div>
+
+
+    <div class="content">
+      <div class="grid-container">
+
+        <div class="grid-item">
+          <div class="card">
+            <a href="FirstComeFirstServe.html">
+              <span class="link"></span></a>
+            <img class="image" src="images/fcfs.png" alt="Avatar" style="width:100%">
+            <div class="container">
+              <p class="headings">First Come First Serve</p>
+              <p>FCFS is an operating system scheduling algorithm that automatically executes queued requests and
+                processes in order of their arrival.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-item">
+          <div class="card">
+            <a href="RoundRobin.html">
+              <span class="link"></span></a>
+            <img class="image" src="images/roundRobin.png" alt="Avatar" style="width:100%">
+            <div class="container">
+              <p class="headings">Round Robin</p>
+              <p>Round robin is a pre-emptive algorithm · The CPU is shifted to the next process after fixed interval
+                time, which is called time quantum/time slice.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-item">
+          <div class="card">
+            <a href="PriorityPreemptive.html">
+              <span class="link"></span></a>
+            <img class="image" src="images/priority.png" alt="Avatar" style="width:100%">
+            <div class="container">
+              <p class="headings">Priority Preemptive</p>
+              <p>In this Scheduling, at the time of arrival of a process in the ready queue, its Priority
+                is compared with the priority of the other processes present in the ready queue as well as with the one
+                which is being executed by the CPU at that point of time.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-item">
+          <div class="card">
+            <a href="PriorityNonPreemptive.html">
+              <span class="link"></span></a>
+            <img class="image" src="images/npriority.png" alt="Avatar" style="width:100%">
+            <div class="container">
+              <p class="headings">Priority Non Preemptive</p>
+              <p>In this scheduling, the Processes are scheduled according to the priority number
+                assigned to them. Once the process gets scheduled, it will run till the completion. </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-item">
+          <div class="card">
+            <a href="ShortestJobFirst.html">
+              <span class="link"></span></a>
+            <img class="image" src="images/sjf.png" alt="Avatar" style="width:100%">
+            <div class="container">
+              <p class="headings">Shortest Job First</p>
+              <p>In Preemptive SJF Scheduling, jobs are put into the ready queue as they come. The job which
+                is shorter is executed 1st. </p>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </div>
+    <div class="footer"></div>
+
+    <div class="footer">
+
+    </div>
+  </div>
+
+</body>
+
 </html>
