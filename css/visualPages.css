@@ -9,7 +9,7 @@
  }
 .grid-container {
    display: grid;
-   grid-row-gap: 370px;
+   grid-row-gap: 380px;
    grid-column-gap: 50px;
    grid-template-columns: auto auto auto;
    padding-left: 100px;
@@ -35,7 +35,7 @@
    position: absolute;
    width : 20%;
    height: 30%;
-   background-color:rgb(203, 196, 243);
+   background-color:rgb(213, 228, 179);
    font-size: 15px;
    }
    
