@@ -1,4 +1,14 @@
 /* controlling the look of the left-hand menu */
+
+/* Remove extra left and right margins, due to padding in columns */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 .link {
    position: absolute;
    width: 100%;
@@ -35,7 +45,7 @@
    position: absolute;
    width : 20%;
    height: 30%;
-   background-color:rgb(213, 228, 179);
+   background-color:rgba(102, 204, 51, 0.555);
    font-size: 15px;
    }
    
@@ -89,3 +99,38 @@
 .image{
    height:180px;
 }
+ .navbar {
+   margin-top: -10px;
+   padding: 10px;
+   width: 100%;
+   background-color:#242582;
+   overflow: auto;
+ }
+ 
+ /* Navbar links */
+ .navbar a {
+   float: c;
+   text-align: center;
+   padding: 12px;
+   color: white;
+   text-decoration: none;
+   font-size: 17px;
+ }
+ 
+ /* Navbar links on mouse-over */
+ /* .navbar a:hover {
+   background-color: #000;
+ }
+  */
+ /* Current/active navbar link */
+ .active {
+   background-color: #242582;
+ }
+ 
+ /* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
+ @media screen and (max-width: 500px) {
+   .navbar a {
+     float: none;
+     display: block;
+   }
+ }
