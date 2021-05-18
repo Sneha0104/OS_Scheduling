@@ -3,6 +3,10 @@
     <link rel="stylesheet" href="css/app.css" />
     <link rel="stylesheet" href="css/menu.css" />
     <link rel="stylesheet" href="css/util.css" />
+    <link rel="stylesheet" href="css/visualPages.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 <title>Round Robin</title>
 
 <script src="js/jquery-3.1.0.min.js"></script>
@@ -273,16 +277,11 @@ $(window).on('load', function() {
 })
 </script>
 <br/>
-<header id="header">
-    <nav class="links" style="--items: 5;">
-        <a href="FirstComeFirstServe.html">First Come, First Serve (FCFS)</a>
-        <a href="ShortestJobFirst.html">Shortest Job First</a>
-        <a href="RoundRobin.html">Round Robin</a>
-        <a href="PriorityNonPreemptive.html">Priority Non-Preemptive</a>
-        <a href="PriorityPreemptive.html">Priority Preemptive</a>
-        <span class="line"></span>
-    </nav>
-</header>
+
+<div class="navbar">
+    <a class="active" href="index.html"><i class="fa fa-fw fa-home"></i> Home</a>
+    <a><i class="header"></i> Data Structure and Algorithms Visualizations</a>
+  </div>
 <br><br>
 <h2>Round Robin </h2>
 <br><br>
@@ -345,4 +344,6 @@ $(window).on('load', function() {
 <button id="INIT_COMPUTE">Compute</button>
 </center>
 </body>
+<div class="footer"></div>
+
 </html>
