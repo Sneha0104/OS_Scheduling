@@ -109,7 +109,7 @@
  
  /* Navbar links */
  .navbar a {
-   float: c;
+   float: left;
    text-align: center;
    padding: 12px;
    color: white;
