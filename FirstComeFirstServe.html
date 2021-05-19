@@ -28,24 +28,24 @@
         <a class="active" href="index.html" style="font-size: 20px;"><i class="fa fa-fw fa-home"></i> Home</a>
         <a style="font-size: 20px;"> Data Structure and Algorithms Visualizations</a>
     </div>
-    <br><br><br><br>
+    <br><br>
     <h2>First Come, First Serve (FCFS)</h2>
     <br><br>
     <center>
-        <div class="table-wrapper">
+        <!-- <div class="table-wrapper">
 
             <div class="limiter">
                 <div class="container-table100">
                     <div class="wrap-table100">
-                        <div class="table100">
+                        <div class="table100"> -->
                             <table border="1">
                                 <thead>
                                     <tr class="table100-head">
-                                        <th class="column1">Process Name</th>
-                                        <th class="column2">Arrival Time</th>
-                                        <th class="column3">Burst Time</th>
-                                        <th class="column4">Turn-Around Time</th>
-                                        <th class="column5">Waiting Time</th>
+                                        <td>Process Name</td>
+                                        <td>Arrival Time</td>
+                                        <td>Burst Time</td>
+                                        <td>Turn-Around Time</td>
+                                        <td>Waiting Time</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -98,6 +98,9 @@
                 </div>
             </div>
             <br />
+            <br/><br/>
+            <button type="button" class="addBtn" onclick="addRow();">Add Row</button>
+            <br/><br/>
             <div style="width: 95%">
                 <div id="gantt_chart">
                 </div>

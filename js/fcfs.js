@@ -131,3 +131,22 @@ function checkValues() {
 
     return flag;
 }
+function addRow()
+        {
+            var lastRow = $('#table tr:last');
+            var table = document.getElementById('table')
+            let row = '<tr><td>P' 
+            + (num + 1)
+            + '</td><td><input data-process='
+            + (num+1)
+            + ' type="text" class="arrival_time" /></td><td><input data-process='
+            + (num+1)
+            + ' type="text" class="burst_time" /></td><td><span class="TAT" id="P'
+            + (num+1)
+            + '_TAT"></span></td><td><span class="WT" id="P'
+            + (num+1)
+            + '_WT"></span></td></tr>';
+            lastRow.before(row)
+            num+=1
+            loadValues()
+        }
