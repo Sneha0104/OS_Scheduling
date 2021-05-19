@@ -9,10 +9,10 @@ var GLOBAL_bubbleEnd = null;
 var my_console = $('#cust_console');
 var my_gantt_chart = $('#gantt_chart');
 var my_colors = [
-    '#fa2d3b',
-    '#5d62f5',
-    '#48b08f',
-    '#611a12'
+    '#9b9fab',
+    '#92b9dd',
+    '#275f96',
+    '#ff8181'
 ];
 var i = null;
 var pr_done = 0;

@@ -1,94 +1,96 @@
 <html>
+
 <head>
     <link rel="stylesheet" href="css/app.css" />
     <link rel="stylesheet" href="css/menu.css" />
     <link rel="stylesheet" href="css/util.css" />
     <link rel="stylesheet" href="css/visualPages.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
     <title>Shortest Job First</title>
     <script src="js/jquery-3.1.0.min.js"></script>
     <script type="text/javascript" src="js/sjf.js"> </script>
 
-    
+
 </head>
+
 <body>
 
-<script>
-$(window).on('load', function() {
-  $('#status').fadeOut();
-  $('#preloader').delay(350).fadeOut('slow'); 
-  $('body').delay(350).css({'overflow':'visible'});
-})
-</script>
+    <script>
+        $(window).on('load', function () {
+            $('#status').fadeOut();
+            $('#preloader').delay(350).fadeOut('slow');
+            $('body').delay(350).css({ 'overflow': 'visible' });
+        })
+    </script>
 
-<div class="navbar">
-    <a class="active" href="index.html" style="font-size: 20px;"><i class="fa fa-fw fa-home"></i> Home</a>
-    <a style="font-size: 20px;"> Data Structure and Algorithms Visualizations</a>
-  </div>
-<br><br><br><br>
-<h2>Shortest Job First</h2>
-<br><br>
-<center>
-<table border="1" id="table" class="table">
-    <thead>
-    <tr>
-        <td>Process Name</td>
-        <td>Arrival Time</td>
-        <td>Burst Time</td>
-        <td>Turn-Around Time</td>
-        <td>Waiting Time</td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>P1</td>
-        <td><input data-process="1" type="text" class="arrival_time" /></td>
-        <td><input data-process="1" type="text" class="burst_time" /></td>
-        <td><span class="TAT" id="P1_TAT"></span></td>
-        <td><span class="WT" id="P1_WT"></span></td>
-    </tr>
-    <tr>
-        <td>P2</td>
-        <td><input data-process="2" type="text" class="arrival_time" /></td>
-        <td><input data-process="2" type="text" class="burst_time" /></td>
-        <td><span class="TAT" id="P2_TAT"></span></td>
-        <td><span class="WT" id="P2_WT"></span></td>
-    </tr>
-    <tr>
-        <td>P3</td>
-        <td><input data-process="3" type="text" class="arrival_time" /></td>
-        <td><input data-process="3" type="text" class="burst_time" /></td>
-        <td><span class="TAT" id="P3_TAT"></span></td>
-        <td><span class="WT" id="P3_WT"></span></td>
-    </tr>
-    <tr>
-        <td>P4</td>
-        <td><input data-process="4" type="text" class="arrival_time" /></td>
-        <td><input data-process="4" type="text" class="burst_time" /></td>
-        <td><span class="TAT" id="P4_TAT"></span></td>
-        <td><span class="WT" id="P4_WT"></span></td>
-    </tr>
-    <tr>
-        <td colspan="3">Average</td>
-        <td><span id="AVG_TAT"></span></td>
-        <td><span id="AVG_WT"></span></td>
-    </tr>
-    </tbody>
-</table>
-<br/>
-<br/><br/>
-<button type="button" class="addBtn" onclick="addRow();">Add Row</button>
-<br/><br/>
-<div style="width: 80%">
-    <div id="gantt_chart">
+    <div class="navbar">
+        <a class="active" href="index.html" style="font-size: 20px;"><i class="fa fa-fw fa-home"></i> Home</a>
+        <a style="font-size: 20px;"> Data Structure and Algorithms Visualizations</a>
     </div>
-</div>
-<div style="clear: both;"></div>
-<p id="cust_console" style="color:red;"></p>
-<button id="INIT_COMPUTE">Compute</button>
-</center>
+    <br><br><br><br>
+    <h2>Shortest Job First</h2>
+    <br><br>
+    <center>
+        <table border="1" id="table" class="table">
+            <thead>
+                <tr>
+                    <td>Process Name</td>
+                    <td>Arrival Time</td>
+                    <td>Burst Time</td>
+                    <td>Turn-Around Time</td>
+                    <td>Waiting Time</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>P1</td>
+                    <td><input data-process="1" type="text" class="arrival_time" /></td>
+                    <td><input data-process="1" type="text" class="burst_time" /></td>
+                    <td><span class="TAT" id="P1_TAT"></span></td>
+                    <td><span class="WT" id="P1_WT"></span></td>
+                </tr>
+                <tr>
+                    <td>P2</td>
+                    <td><input data-process="2" type="text" class="arrival_time" /></td>
+                    <td><input data-process="2" type="text" class="burst_time" /></td>
+                    <td><span class="TAT" id="P2_TAT"></span></td>
+                    <td><span class="WT" id="P2_WT"></span></td>
+                </tr>
+                <tr>
+                    <td>P3</td>
+                    <td><input data-process="3" type="text" class="arrival_time" /></td>
+                    <td><input data-process="3" type="text" class="burst_time" /></td>
+                    <td><span class="TAT" id="P3_TAT"></span></td>
+                    <td><span class="WT" id="P3_WT"></span></td>
+                </tr>
+                <tr>
+                    <td>P4</td>
+                    <td><input data-process="4" type="text" class="arrival_time" /></td>
+                    <td><input data-process="4" type="text" class="burst_time" /></td>
+                    <td><span class="TAT" id="P4_TAT"></span></td>
+                    <td><span class="WT" id="P4_WT"></span></td>
+                </tr>
+                <tr>
+                    <td colspan="3">Average</td>
+                    <td><span id="AVG_TAT"></span></td>
+                    <td><span id="AVG_WT"></span></td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <br /><br />
+        <button type="button" class="addBtn" onclick="addRow();">Add Row</button>
+        <br /><br />
+        <div style="width: 80%">
+            <div id="gantt_chart">
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+        <p id="cust_console" style="color:red;"></p>
+        <button id="INIT_COMPUTE">Compute</button>
+    </center>
 </body>
 <div class="footer"></div>
 
