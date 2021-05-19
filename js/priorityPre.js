@@ -57,7 +57,7 @@ function loadValues() {
                         if (GLOBAL_bubbleStart != null) {
                             console.log(i + '\t: BUBBLE END');
                             var bubble_width = ((i - GLOBAL_bubbleStart) / GET_BURSTTIME_SUM()) * 80;
-                            $('#gantt_chart').append('<div class="bubble" style="background-color: white; width: ' + bubble_width + '%; color: black;">BUBBLE<br/>' + GLOBAL_bubbleStart + ' - ' + i + '</div>');
+                            $('#gantt_chart').append('<div class="bubble" style="background-color: #EEEDEB; width: ' + bubble_width + '%; color: black;">BUBBLE<br/>' + GLOBAL_bubbleStart + ' - ' + i + '</div>');
                             GLOBAL_bubbleStart = null;
                         }
 

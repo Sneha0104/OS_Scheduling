@@ -10,7 +10,7 @@
   height: 5em;
   float: left;
   display: block;
-  color: whitesmoke;
+  color: black;
   font-weight: 500;
 }
 
@@ -57,7 +57,7 @@ a {
   height: 5em;
   float: left;
   display: block;
-  color: whitesmoke;
+  color: #FFE497;
   border-radius: 0%;
   border-color: whitesmoke;
 }

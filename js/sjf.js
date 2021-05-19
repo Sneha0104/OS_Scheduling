@@ -10,6 +10,7 @@ var my_colors = [
     '#92b9dd',
     '#275f96',
     '#ff8181'
+    
 ];
 var num = 4
 function loadValues() {
@@ -54,7 +55,7 @@ function loadValues() {
                 }
 
                 if (GLOBAL_startTime < tmp_at) {
-                    $('#gantt_chart').append('<div class="gantt_block bubble" style="background-color: white; width: 10%; color: black;">BUBBLE<br/>' + GLOBAL_startTime + ' - ' + tmp_at + '</div>');
+                    $('#gantt_chart').append('<div class="gantt_block bubble" style="background-color:#EEEDEB; width: 10%; color: black;">BUBBLE<br/>' + GLOBAL_startTime + ' - ' + tmp_at + '</div>');
                     GLOBAL_startTime = tmp_at;
                 }
 
