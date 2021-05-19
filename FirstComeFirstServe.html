@@ -32,67 +32,53 @@
     <h2>First Come, First Serve (FCFS)</h2>
     <br><br>
     <center>
-        <!-- <div class="table-wrapper">
-
-            <div class="limiter">
-                <div class="container-table100">
-                    <div class="wrap-table100">
-                        <div class="table100"> -->
-                            <table border="1">
-                                <thead>
-                                    <tr class="table100-head">
-                                        <td>Process Name</td>
-                                        <td>Arrival Time</td>
-                                        <td>Burst Time</td>
-                                        <td>Turn-Around Time</td>
-                                        <td>Waiting Time</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>P1</td>
-                                        <td><input data-process="P1" type="text" class="arrival_time" />
-                                        </td>
-                                        <td><input data-process="P1" type="text" class="burst_time" />
-                                        </td>
-                                        <td><span class="TAT" id="P1_TAT"></span></td>
-                                        <td><span class="WT" id="P1_WT"></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td">P2</td>
-                                        <td><input data-process="P2" type="text" class="arrival_time" /></td>
-                                        <td><input data-process="P2" type="text" class="burst_time" /></td>                                      </td>
-                                        <td><span class="TAT" id="P2_TAT"></span></td>
-                                        <td><span class="WT" id="P2_WT"></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>P3</td>
-                                        <td><input data-process="P3" type="text" class="arrival_time" /></td>
-                                        <td><input data-process="P3" type="text" class="burst_time" /></td>
-                                        <td><span class="TAT" id="P3_TAT"></span></td>
-                                        <td><span class="WT" id="P3_WT"></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>P4</td>
-                                        <td><input data-process="P4" type="text" class="arrival_time" />
-                                        </td>
-                                        <td><input data-process="P4" type="text" class="burst_time" />
-                                        </td>
-                                        <td><span class="TAT" id="P4_TAT"></span></td>
-                                        <td><span class="WT" id="P4_WT"></span></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td colspan="3">Average</td>
-                                        <td><span id="AVG_TAT"></span></td>
-                                        <td><span id="AVG_WT"></span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+        <table border="1">
+        <thead>
+        <tr class="table100-head">
+            <td>Process Name</td>
+            <td>Arrival Time</td>
+            <td>Burst Time</td>
+            <td>Turn-Around Time</td>
+            <td>Waiting Time</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>P1</td>
+            <td><input data-process="P1" type="text" class="arrival_time" /></td>
+            <td><input data-process="P1" type="text" class="burst_time" /></td>
+            <td><span class="TAT" id="P1_TAT"></span></td>
+            <td><span class="WT" id="P1_WT"></span></td>
+        </tr>
+        <tr>
+            <td>P2</td>
+            <td><input data-process="P2" type="text" class="arrival_time" /></td>
+            <td><input data-process="P2" type="text" class="burst_time" /></td> 
+            <td><span class="TAT" id="P2_TAT"></span></td>
+            <td><span class="WT" id="P2_WT"></span></td>
+        </tr>
+        <tr>
+            <td>P3</td>
+            <td><input data-process="P3" type="text" class="arrival_time" /></td>
+            <td><input data-process="P3" type="text" class="burst_time" /></td>
+            <td><span class="TAT" id="P3_TAT"></span></td>
+            <td><span class="WT" id="P3_WT"></span></td>
+        </tr>
+        <tr>
+            <td>P4</td>
+            <td><input data-process="P4" type="text" class="arrival_time" /></td>
+            <td><input data-process="P4" type="text" class="burst_time" /></td>
+            <td><span class="TAT" id="P4_TAT"></span></td>
+            <td><span class="WT" id="P4_WT"></span></td>
+        </tr>
+        <tr>
+            <td colspan="3">Average</td>
+            <td><span id="AVG_TAT"></span></td>
+            <td><span id="AVG_WT"></span></td>
+         </tr>
+        </tbody>
+        </table>
             <br />
-            <br/><br/>
-            <button type="button" class="addBtn" onclick="addRow();">Add Row</button>
-            <br/><br/>
             <div style="width: 95%">
                 <div id="gantt_chart">
                 </div>
