@@ -1,39 +1,38 @@
 
-        var ready_queue = [];
-        var FIRST_PROCESS = [];
-        var GLOBAL_startTime = null;
-        var GLOBAL_endTime = null;
-        var my_console = $('#cust_console');
-        var my_gantt_chart = $('#gantt_chart');
-        var my_colors = [
-                            '#fa2d3b',
-                            '#5d62f5',
-                            '#48b08f',
-                            '#611a12'
-        ];
-        var num = 4
-        function loadValues(){
+var ready_queue = [];
+var FIRST_PROCESS = [];
+var GLOBAL_startTime = null;
+var GLOBAL_endTime = null;
+var my_console = $('#cust_console');
+var my_gantt_chart = $('#gantt_chart');
+var my_colors = [
+    '#9b9fab',
+    '#92b9dd',
+    '#275f96',
+    '#ff8181'
+    
+];
+var num = 4
+function loadValues() {
 
-            $('input').each(function(){
-                $(this).val(Math.floor(Math.random() * 10) + 1);
-            });
-            $('#INIT_COMPUTE').click(function(){
-                if(checkValues()){ 
-                    my_gantt_chart.empty(); 
-                    for(var i=0; i <= GET_BURSTTIME_TOTAL(); i++){ 
-                        $('.arrival_time').each(function(index){ 
-                            var curr_arrival_time = Math.round(parseFloat($(this).val())); 
-                            if(curr_arrival_time == parseFloat(i)){ 
-                                var process_number = index+1;
-                                var curr_bursttime = parseFloat($('[data-process="'+(process_number)+'"][class="burst_time"]').val());
-                            
-                                if(FIRST_PROCESS.length == 0){
-                                    FIRST_PROCESS.push(process_number+'?'+curr_bursttime);
-                                }else{
-                                    ready_queue.push(process_number+'?'+curr_bursttime);
-                                }
-                            }
-                        });
+    $('input').each(function () {
+        $(this).val(Math.floor(Math.random() * 10) + 1);
+    });
+    $('#INIT_COMPUTE').click(function () {
+        if (checkValues()) {
+            my_gantt_chart.empty();
+            for (var i = 0; i <= GET_BURSTTIME_TOTAL(); i++) {
+                $('.arrival_time').each(function (index) {
+                    var curr_arrival_time = Math.round(parseFloat($(this).val()));
+                    if (curr_arrival_time == parseFloat(i)) {
+                        var process_number = index + 1;
+                        var curr_bursttime = parseFloat($('[data-process="' + (process_number) + '"][class="burst_time"]').val());
+
+                        if (FIRST_PROCESS.length == 0) {
+                            FIRST_PROCESS.push(process_number + '?' + curr_bursttime);
+                        } else {
+                            ready_queue.push(process_number + '?' + curr_bursttime);
+                        }
                     }
                   
                     ready_queue.sort(function(a,b){
@@ -58,7 +57,10 @@
                             GLOBAL_startTime = tmp_at;
                         }
 
-                        GLOBAL_endTime = GLOBAL_startTime + tmp_burst;
+                if (GLOBAL_startTime < tmp_at) {
+                    $('#gantt_chart').append('<div class="gantt_block bubble" style="background-color:#EEEDEB; width: 10%; color: black;">BUBBLE<br/>' + GLOBAL_startTime + ' - ' + tmp_at + '</div>');
+                    GLOBAL_startTime = tmp_at;
+                }
 
 
                         var wt = GLOBAL_startTime - tmp_at;

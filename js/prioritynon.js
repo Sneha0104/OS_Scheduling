@@ -9,10 +9,11 @@ var GLOBAL_bubbleEnd = null;
 var my_console = $('#cust_console');
 var my_gantt_chart = $('#gantt_chart');
 var my_colors = [
-    '#9b9fab',
-    '#92b9dd',
-    '#275f96',
-    '#ff8181'
+    '#FFCCBB',
+    '#F78D7D',
+    '#CB9897',
+    '#9BB9C3'
+   
 ];
 var i = null;
 var pr_done = 0;
@@ -50,7 +51,7 @@ function loadValues() {
                     if (ready_queue.length > 0) {
                         if (GLOBAL_bubbleStart != null) {
                             var bubble_width = ((i - GLOBAL_bubbleStart) / GET_BURSTTIME_SUM()) * 80;
-                            $('#gantt_chart').append('<div class="bubble" style="background-color: white; width: ' + bubble_width + '%;  color: black;">BUBBLE<br/>' + GLOBAL_bubbleStart + ' - ' + i + '</div>');
+                            $('#gantt_chart').append('<div class="bubble" style="background-color: #EEEDEB; width: ' + bubble_width + '%;  color: black;">BUBBLE<br/>' + GLOBAL_bubbleStart + ' - ' + i + '</div>');
                             GLOBAL_bubbleStart = null;
                         }
                         cpu_process = ready_queue[0].split('?')[0];
