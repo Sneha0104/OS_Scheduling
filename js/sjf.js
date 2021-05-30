@@ -34,146 +34,149 @@ function loadValues() {
                             ready_queue.push(process_number + '?' + curr_bursttime);
                         }
                     }
-                });
-            }
+                  
+                    ready_queue.sort(function(a,b){
+                        return a.split('?')[1] - b.split('?')[1]
+                    });
+                    ready_queue = FIRST_PROCESS.concat(ready_queue);
 
-            ready_queue.sort(function (a, b) {
-                return a.split('?')[1] - b.split('?')[1]
-            });
-            ready_queue = FIRST_PROCESS.concat(ready_queue);
+                    var loop_length = parseFloat(ready_queue.length);
+                    my_gantt_chart.empty();
+                    for(var o=0; o < loop_length; o++){
+                        var tmp_process = ready_queue[0].split('?')[0]; 
+                        var tmp_burst = parseFloat(ready_queue[0].split('?')[1]);
+                        ready_queue.shift();
+                        var tmp_at = parseFloat($('[class="arrival_time"][data-process="'+tmp_process+'"]').val());
 
-            var loop_length = parseFloat(ready_queue.length);
-            my_gantt_chart.empty();
-            for (var o = 0; o < loop_length; o++) {
-                var tmp_process = ready_queue[0].split('?')[0];
-                var tmp_burst = parseFloat(ready_queue[0].split('?')[1]);
-                ready_queue.shift();
-                var tmp_at = parseFloat($('[class="arrival_time"][data-process="' + tmp_process + '"]').val());
+                        if(GLOBAL_startTime == null){
+                            GLOBAL_startTime = tmp_at; 
+                        }
 
-                if (GLOBAL_startTime == null) {
-                    GLOBAL_startTime = tmp_at;
-                }
+                        if(GLOBAL_startTime < tmp_at){
+                            $('#gantt_chart').append('<div class="gantt_block bubble" style="background-color: white; width: 10%; color: black;">BUBBLE<br/>'+GLOBAL_startTime+' - '+tmp_at+'</div>');
+                            GLOBAL_startTime = tmp_at;
+                        }
 
                 if (GLOBAL_startTime < tmp_at) {
                     $('#gantt_chart').append('<div class="gantt_block bubble" style="background-color:#EEEDEB; width: 10%; color: black;">BUBBLE<br/>' + GLOBAL_startTime + ' - ' + tmp_at + '</div>');
                     GLOBAL_startTime = tmp_at;
                 }
 
-                GLOBAL_endTime = GLOBAL_startTime + tmp_burst;
+
+                        var wt = GLOBAL_startTime - tmp_at;
+                        var tat = GLOBAL_endTime - tmp_at;
+
+                        $('#P'+tmp_process+'_WT').empty().append(wt);
+                        $('#P'+tmp_process+'_TAT').empty().append(tat);
+
+                        var curr_width = ((tmp_burst / GET_BURSTTIME_TOTAL()) * 80); 
+
+                        $('#gantt_chart').append('<div class="gantt_block" style="background-color: '+my_colors[o%4]+'; width: '+curr_width+'%;">P'+tmp_process+'<br/>'+GLOBAL_startTime+' - '+GLOBAL_endTime+'</div>');
+
+                        GLOBAL_startTime = GLOBAL_endTime;
+                    }
 
 
-                var wt = GLOBAL_startTime - tmp_at;
-                var tat = GLOBAL_endTime - tmp_at;
+                    var total_tat = 0;
+                    $('.TAT').each(function(index, value){
+                        total_tat += parseFloat($(this).text());
+                    });
+                    $('#AVG_TAT').empty().append((parseFloat(total_tat)/parseFloat(loop_length)));
 
-                $('#P' + tmp_process + '_WT').empty().append(wt);
-                $('#P' + tmp_process + '_TAT').empty().append(tat);
+                    var total_wt = 0;
+                    $('.WT').each(function(index, value){
+                        total_wt += parseFloat($(this).text());
+                    });
+                    $('#AVG_WT').empty().append((parseFloat(total_wt)/parseFloat(loop_length)));
+                }
+            });
+            $('#methods').change(function(){
+                location.href = $(this).val();
+            })
+        };
+        $(document).ready(loadValues);
+        function GET_BURSTTIME_HIGHEST(){
+            var x = 0;
+            $('.burst_time').each(function(index){
+                var bt = parseFloat($(this).val());
+                if(bt > 0){
+                    x = bt;
+                }
+            });
 
-                var curr_width = ((tmp_burst / GET_BURSTTIME_TOTAL()) * 80);
+            return parseFloat(x);
+        }
 
-                $('#gantt_chart').append('<div class="gantt_block" style="background-color: ' + my_colors[o % 4] + '; width: ' + curr_width + '%;">P' + tmp_process + '<br/>' + GLOBAL_startTime + ' - ' + GLOBAL_endTime + '</div>');
+        function GET_BURSTTIME_TOTAL(){
+            var total = 0.0;
+            $('.burst_time').each(function(index){
+                total += parseFloat($(this).val());
+            });
 
-                GLOBAL_startTime = GLOBAL_endTime;
+            if(parseFloat(total) < GET_ARRIVALTIME_HIGHEST()){
+                total = GET_ARRIVALTIME_HIGHEST();
             }
 
+            return parseFloat(total);
+        }
 
-            var total_tat = 0;
-            $('.TAT').each(function (index, value) {
-                total_tat += parseFloat($(this).text());
+        function GET_ARRIVALTIME_HIGHEST(){
+            var highest = 0;
+            $('.arrival_time').each(function(){
+                if(highest == 0){
+                    highest = parseFloat($(this).val());
+                }
+                if(parseFloat($(this).val()) > highest){
+                    highest = parseFloat($(this).val());
+                }
             });
-            $('#AVG_TAT').empty().append((parseFloat(total_tat) / parseFloat(loop_length)));
-
-            var total_wt = 0;
-            $('.WT').each(function (index, value) {
-                total_wt += parseFloat($(this).text());
-            });
-            $('#AVG_WT').empty().append((parseFloat(total_wt) / parseFloat(loop_length)));
+            return parseFloat(highest);
         }
-    });
-    $('#methods').change(function () {
-        location.href = $(this).val();
-    })
-};
-$(document).ready(loadValues);
-function GET_BURSTTIME_HIGHEST() {
-    var x = 0;
-    $('.burst_time').each(function (index) {
-        var bt = parseFloat($(this).val());
-        if (bt > 0) {
-            x = bt;
+
+        function checkValues(){
+            var flag = true;
+            $('#cust_console').empty();
+            $('.arrival_time').each(function(index){
+   
+                if($(this).val() == '' || !$.isNumeric($(this).val())){
+                    $('#cust_console').append('Please input a number for Arrival Time for Process P'+(index+1)+'<br/>');
+                    flag = false;
+                }
+            })
+            $('.burst_time').each(function(index){
+                // check if burst_time is filled out
+                if($(this).val() == '' || !$.isNumeric($(this).val())){
+                    $('#cust_console').append('Please input a number for Burst Time for Process P'+(index+1)+'<br/>');
+                    flag = false;
+                }
+            })
+            $('.priority').each(function(index){
+                // check if burst_time is filled out
+                if($(this).val() == '' || !$.isNumeric($(this).val())){
+                    $('#cust_console').append('Please input a number for Priority for Process P'+(index+1)+'<br/>');
+                    flag = false;
+                }
+            })
+
+            return flag;
         }
-    });
-
-    return parseFloat(x);
-}
-
-function GET_BURSTTIME_TOTAL() {
-    var total = 0.0;
-    $('.burst_time').each(function (index) {
-        total += parseFloat($(this).val());
-    });
-
-    if (parseFloat(total) < GET_ARRIVALTIME_HIGHEST()) {
-        total = GET_ARRIVALTIME_HIGHEST();
-    }
-
-    return parseFloat(total);
-}
-
-function GET_ARRIVALTIME_HIGHEST() {
-    var highest = 0;
-    $('.arrival_time').each(function () {
-        if (highest == 0) {
-            highest = parseFloat($(this).val());
+        function addRow()
+        {
+            var lastRow = $('#table tr:last');
+            var table = document.getElementById('table')
+            let row = '<tr><td>P' 
+            + (num + 1)
+            + '</td><td><input data-process='
+            + (num+1)
+            + ' type="text" class="arrival_time" /></td><td><input data-process='
+            + (num+1)
+            + ' type="text" class="burst_time" /></td><td><span class="TAT" id="P'
+            + (num+1)
+            + '_TAT"></span></td><td><span class="WT" id="P'
+            + (num+1)
+            + '_WT"></span></td></tr>';
+            lastRow.before(row)
+            num+=1
+            loadValues()
         }
-        if (parseFloat($(this).val()) > highest) {
-            highest = parseFloat($(this).val());
-        }
-    });
-    return parseFloat(highest);
-}
-
-function checkValues() {
-    var flag = true;
-    $('#cust_console').empty();
-    $('.arrival_time').each(function (index) {
-
-        if ($(this).val() == '' || !$.isNumeric($(this).val())) {
-            $('#cust_console').append('Please input a number for Arrival Time for Process P' + (index + 1) + '<br/>');
-            flag = false;
-        }
-    })
-    $('.burst_time').each(function (index) {
-        // check if burst_time is filled out
-        if ($(this).val() == '' || !$.isNumeric($(this).val())) {
-            $('#cust_console').append('Please input a number for Burst Time for Process P' + (index + 1) + '<br/>');
-            flag = false;
-        }
-    })
-    $('.priority').each(function (index) {
-        // check if burst_time is filled out
-        if ($(this).val() == '' || !$.isNumeric($(this).val())) {
-            $('#cust_console').append('Please input a number for Priority for Process P' + (index + 1) + '<br/>');
-            flag = false;
-        }
-    })
-
-    return flag;
-}
-function addRow() {
-    var lastRow = $('#table tr:last');
-    var table = document.getElementById('table')
-    let row = '<tr><td>P'
-        + (num + 1)
-        + '</td><td><input data-process='
-        + (num + 1)
-        + ' type="text" class="arrival_time" /></td><td><input data-process='
-        + (num + 1)
-        + ' type="text" class="burst_time" /></td><td><span class="TAT" id="P'
-        + (num + 1)
-        + '_TAT"></span></td><td><span class="WT" id="P'
-        + (num + 1)
-        + '_WT"></span></td></tr>';
-    lastRow.before(row)
-    num += 1
-    loadValues()
-}
+    
